@@ -91,8 +91,8 @@ static Key keys[] = {
     { MODKEY|ShiftMask,        	    XK_q,      quit,           {0} },
     { MODKEY|ShiftMask|ControlMask, XK_q,      spawn,      {.v = poweroffcmd} },
     { MODKEY,          		    XK_w,      spawn,      {.v = firefoxcmd} },
-    { MODKEY|ControlMask,      	    XK_q,      spawn,      SHCMD("/path/to/script.sh") },
-    { MODKEY|ShiftMask,   	    XK_w,      spawn,      SHCMD("/path/to/script.sh") },
+    { MODKEY|ControlMask,      	    XK_q,      spawn,      SHCMD("${HOME}/.scripts/logout.sh") },
+    { MODKEY|ShiftMask,   	    XK_w,      spawn,      SHCMD("${HOME}/.scripts/set_wallpaper.sh") },
     
     TAGKEYS(                        XK_1,                      0)
     TAGKEYS(                        XK_2,                      1)
