@@ -6,8 +6,8 @@ static const unsigned int gappx     = 6;
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "SFNS Display:style=bold:size=13:antialias=true:autohint=true" };
-static const char dmenufont[]       = "SFNS Display:style=bold:size=13:antialias=true:autohint=true";
+static const char *fonts[]          = { "SF Mono:style=bold:size=13:antialias=true:autohint=true" };
+static const char dmenufont[]       = "SF Mono:style=bold:size=13:antialias=true:autohint=true";
 static const char col_gray1[]       = "#a2a2a2";
 static const char col_gray2[]       = "#c0bfc0";
 static const char col_gray3[]       = "#000000";
