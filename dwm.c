@@ -39,6 +39,7 @@
 #ifdef XINERAMA
 #include <X11/extensions/Xinerama.h>
 #endif /* XINERAMA */
+#include <X11/extensions/shape.h>
 #include <X11/Xft/Xft.h>
 
 #include "drw.h"
@@ -1300,6 +1301,7 @@ resizeclient(Client *c, int x, int y, int w, int h)
 	c->oldh = c->h; c->h = wc.height = h - gapincr;
 	XConfigureWindow(dpy, c->win, CWX|CWY|CWWidth|CWHeight|CWBorderWidth, &wc);
 	configure(c);
+	drawCorners(c);
 	XSync(dpy, False);
 }
 
@@ -1366,6 +1368,9 @@ restack(Monitor *m)
 	Client *c;
 	XEvent ev;
 	XWindowChanges wc;
+
+	for(c = m->stack; c; c = c->snext)
+		drawCorners(c);
 
 	drawbar(m);
 	if (!m->sel)
@@ -2180,6 +2185,47 @@ zoom(const Arg *arg)
 		if (!c || !(c = nexttiled(c->next)))
 			return;
 	pop(c);
+}
+
+void
+drawCorners(Client *c)
+{
+	Window w = c->win;
+	XWindowAttributes wa;
+	XGetWindowAttributes(dpy, w, &wa);
+
+	if(!XGetWindowAttributes(dpy, w, &wa))
+		return;
+
+	int width = borderpx * 2 + wa.width;
+	int height = borderpx * 2 + wa.height;
+	int diameter = 2 * radiuspx;
+	if(width < diameter || height < diameter)
+		return;
+
+	Pixmap mask = XCreatePixmap(dpy, w, width, height, 1);
+	if(!mask)
+		return;
+
+	XGCValues xgcv;
+	GC shape_gc = XCreateGC(dpy, mask, 0, &xgcv);
+	if(!shape_gc) {
+		XFreePixmap(dpy, mask);
+		return;
+	}
+
+	XSetForeground(dpy, shape_gc, 0);
+	XFillRectangle(dpy, mask, shape_gc, 0, 0, width, height);
+	XSetForeground(dpy, shape_gc, 1);
+	XFillArc(dpy, mask, shape_gc, 0, 0, diameter, diameter, 0, 23040);
+	XFillArc(dpy, mask, shape_gc, width - diameter - 1, 0, diameter, diameter, 0, 23040);
+	XFillArc(dpy, mask, shape_gc, 0, height - diameter - 1, diameter, diameter, 0, 23040);
+	XFillArc(dpy, mask, shape_gc, width - diameter - 1, height - diameter - 1, diameter, diameter, 0, 23040);
+	XFillRectangle(dpy, mask, shape_gc, radiuspx, 0, width - diameter, height);
+	XFillRectangle(dpy, mask, shape_gc, 0, radiuspx, width, height - diameter);
+	XShapeCombineMask(dpy, w, ShapeBounding, 0 - wa.border_width, 0 - wa.border_width, mask, ShapeSet);
+	XFreePixmap(dpy, mask);
+	XFreeGC(dpy, shape_gc);
 }
 
 int
