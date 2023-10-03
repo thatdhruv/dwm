@@ -7,19 +7,19 @@ static const unsigned int gappx     = 5;
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "SF Mono:style=bold:size=13:antialias=true:autohint=true" };
+static const char *fonts[]          = { "SF Mono:style=bold:size=13:antialias=true:autohint=true" }; //Terminus:style=regular:pixelsize=18:antialias=true:autohint=true
 static const char dmenufont[]       = "SF Mono:style=bold:size=13:antialias=true:autohint=true";
-static const char col_gray1[]       = "#a2a2a2";
-static const char col_gray2[]       = "#c0bfc0";
-static const char col_gray3[]       = "#000000";
-static const char col_gray4[]       = "#242424";
-static const char col_lred[]        = "#ff605c";
+static const char col_gray1[]       = "#a2a2a2"; //242424
+static const char col_gray2[]       = "#c0bfc0"; //242424
+static const char col_gray3[]       = "#000000"; //ffffff
+static const char col_gray4[]       = "#242424"; //242424
+static const char col_selection[]   = "#ff605c"; //d4d4d4
 static const unsigned int baralpha = 0xe3;
 static const unsigned int borderalpha = OPAQUE;
 static const char *colors[][3]      = {
     /*               fg         bg         border   */
     [SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-    [SchemeSel]  = { col_gray4, col_lred,  col_lred  },
+    [SchemeSel]  = { col_gray4, col_selection,  col_selection  },
 };
 static const unsigned int alphas[][3]      = {
     /*               fg      bg        border     */
@@ -66,7 +66,7 @@ static const Layout layouts[] = {
  
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_lred, "-sf", col_gray4, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_selection, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "st", NULL };
  
 static const char *firefoxcmd[] = { "firefox", NULL };
@@ -75,35 +75,35 @@ static const char *poweroffcmd[] = { "poweroff", NULL };
 static Key keys[] = {
     /* modifier                     key        function        argument */
     { MODKEY,                       XK_space,  spawn,          {.v = dmenucmd } },
-	   { MODKEY|ShiftMask,		XK_space,  togglebar,      {0} },
-   	{ MODKEY,			XK_Return, spawn,          {.v = termcmd } },
-	   { MODKEY,                       XK_Tab,    view,           {0} },
-	   { MODKEY,                       XK_comma,  setlayout,      {.v = &layouts[0]} },
-   	{ MODKEY|ShiftMask,		XK_comma,  setlayout,      {.v = &layouts[1]} },
-	   { MODKEY|ControlMask,		XK_comma,  setlayout,      {.v = &layouts[2]} },
-	   { MODKEY,                       XK_period, setlayout,      {0} },
-	   { MODKEY|ShiftMask,             XK_period, togglefloating, {0} },
-	   { MODKEY|ControlMask,		XK_period, zoom,           {0} },
-   	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
-	   { MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
-	   { MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
-	   { MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
-   	{ MODKEY|ShiftMask,		XK_l,      incnmaster,     {.i = +1 } },
-	   { MODKEY|ShiftMask,		XK_h,      incnmaster,     {.i = -1 } },
-	   { MODKEY,			XK_q,      killclient,     {0} },
-	   { MODKEY|ShiftMask,             XK_q,      quit,           {0} },
-	   { MODKEY,                       XK_0,      view,           {.ui = ~0 } },
-	   { MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
-	   { MODKEY|ShiftMask,		XK_slash,  focusmon,       {.i = -1 } },
-	   { MODKEY,                       XK_slash,  focusmon,       {.i = +1 } },
-	   { MODKEY|ShiftMask|ControlMask, XK_slash,  tagmon,         {.i = -1 } },
-	   { MODKEY|ControlMask,		XK_slash,  tagmon,         {.i = +1 } },
+    { MODKEY|ShiftMask,		    XK_space,  togglebar,      {0} },
+    { MODKEY,			    XK_Return, spawn,          {.v = termcmd } },
+    { MODKEY,                       XK_Tab,    view,           {0} },
+    { MODKEY,                       XK_comma,  setlayout,      {.v = &layouts[0]} },
+    { MODKEY|ShiftMask,		    XK_comma,  setlayout,      {.v = &layouts[1]} },
+    { MODKEY|ControlMask,	    XK_comma,  setlayout,      {.v = &layouts[2]} },
+    { MODKEY,                       XK_period, setlayout,      {0} },
+    { MODKEY|ShiftMask,             XK_period, togglefloating, {0} },
+    { MODKEY|ControlMask,	    XK_period, zoom,           {0} },
+    { MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
+    { MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
+    { MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
+    { MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
+    { MODKEY|ShiftMask,		    XK_l,      incnmaster,     {.i = +1 } },
+    { MODKEY|ShiftMask,		    XK_h,      incnmaster,     {.i = -1 } },
+    { MODKEY,			    XK_q,      killclient,     {0} },
+    { MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+    { MODKEY,                       XK_0,      view,           {.ui = ~0 } },
+    { MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
+    { MODKEY|ShiftMask,		    XK_slash,  focusmon,       {.i = -1 } },
+    { MODKEY,                       XK_slash,  focusmon,       {.i = +1 } },
+    { MODKEY|ShiftMask|ControlMask, XK_slash,  tagmon,         {.i = -1 } },
+    { MODKEY|ControlMask,	    XK_slash,  tagmon,         {.i = +1 } },
 
     /* start of user-defined bindings */
-	   { MODKEY|ControlMask,		XK_q,	   spawn,	   SHCMD("${HOME}/.scripts/logout.sh") },
-	   { MODKEY|ShiftMask|ControlMask, XK_q,	   spawn,	   {.v = poweroffcmd} },
-	   { MODKEY,			XK_w,	   spawn,	   {.v = firefoxcmd} },
-	   { MODKEY|ShiftMask,		XK_w,	   spawn,	   SHCMD("${HOME}/.scripts/set_wallpaper.sh") },
+    { MODKEY|ControlMask,	    XK_q,      spawn,	       SHCMD("${HOME}/.scripts/logout.sh") },
+    { MODKEY|ShiftMask|ControlMask, XK_q,      spawn,	       {.v = poweroffcmd} },
+    { MODKEY,			    XK_w,      spawn,	       {.v = firefoxcmd} },
+    { MODKEY|ShiftMask,		    XK_w,      spawn,	       SHCMD("${HOME}/.scripts/set_wallpaper.sh") },
     /* end of user-defined bindings */
     
     TAGKEYS(                        XK_1,                      0)
