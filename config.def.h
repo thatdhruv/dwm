@@ -108,7 +108,7 @@ static Key keys[] = {
     { MODKEY,			    XK_s,      spawn,	       SHCMD("${HOME}/.scripts/screenshot.sh") },
     { MODKEY,			    XK_v,      spawn,	       SHCMD("${HOME}/.scripts/increase_volume.sh") },
     { MODKEY|ShiftMask,		    XK_v,      spawn,	       SHCMD("${HOME}/.scripts/decrease_volume.sh") },
-    { MODKEY,			    XK_m,      spawn,{ .v = mutecmd } },
+    { MODKEY,			    XK_m,      spawn,	       { .v = mutecmd } },
     /* end of user-defined bindings */
     
     TAGKEYS(                        XK_1,                      0)
