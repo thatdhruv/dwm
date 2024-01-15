@@ -70,6 +70,7 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *termcmd[]  = { "st", NULL };
  
 static const char *firefoxcmd[] = { "firefox", NULL };
+static const char *mutecmd[] = { "pamixer", "-t", NULL };
 static const char *poweroffcmd[] = { "poweroff", NULL };
  
 static Key keys[] = {
@@ -105,6 +106,9 @@ static Key keys[] = {
     { MODKEY,			    XK_w,      spawn,	       {.v = firefoxcmd} },
     { MODKEY|ShiftMask,		    XK_w,      spawn,	       SHCMD("${HOME}/.scripts/set_wallpaper.sh") },
     { MODKEY,XK_s,spawn,SHCMD("${HOME}/.scripts/screenshot.sh") },
+    { MODKEY,XK_v,spawn,SHCMD("${HOME}/.scripts/increase_volume.sh") },
+    { MODKEY|ShiftMask,XK_v,spawn,SHCMD("${HOME}/.scripts/decrease_volume.sh") },
+    { MODKEY,XK_m,spawn,{ .v = mutecmd } },
     /* end of user-defined bindings */
     
     TAGKEYS(                        XK_1,                      0)
