@@ -7,13 +7,13 @@ static const unsigned int gappx     = 5;
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "SF Mono:style=bold:size=13:antialias=true:autohint=true" }; //Terminus:style=regular:pixelsize=18:antialias=true:autohint=true
-static const char dmenufont[]       = "SF Mono:style=bold:size=13:antialias=true:autohint=true";
-static const char col_gray1[]       = "#a2a2a2"; //242424
-static const char col_gray2[]       = "#c0bfc0"; //242424
-static const char col_gray3[]       = "#000000"; //ffffff
-static const char col_gray4[]       = "#242424"; //242424
-static const char col_selection[]   = "#ff605c"; //d4d4d4
+static const char *fonts[]          = { "Terminus:style=regular:pixelsize=18:antialias=true:autohint=true" };
+static const char dmenufont[]       = "Terminus:style=regular:pixelsize=18:antialias=true:autohint=true";
+static const char col_gray1[]       = "#242424";
+static const char col_gray2[]       = "#242424";
+static const char col_gray3[]       = "#ffffff";
+static const char col_gray4[]       = "#242424";
+static const char col_selection[]   = "#d4d4d4";
 static const unsigned int baralpha = 0xe3;
 static const unsigned int borderalpha = OPAQUE;
 static const char *colors[][3]      = {
